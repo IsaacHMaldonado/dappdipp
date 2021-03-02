@@ -19,20 +19,14 @@
                         </div>
                         <!-- Menú -->
                         <inertia-link
-                            class="text-white mt-4 p-4 w-full flex relative justify-start border-l-4 border-SSAgold-100"
+                            class="text-white mt-4 p-4 w-full flex relative justify-start border-l-4 border-SSAgold-100 hover:text-SSAgold-100"
                             :class="[$page.url === '/dashboard' ? activeClass : inactiveClass]"
                             href="/dashboard"
                         >
                             <div class="mr-1 flex-shrink-0 my-auto">
+
                                 <svg class="fill-current w-5 h-5" aria-hidden="true" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M2 10C2 5.58172 5.58172 2 10 2V10H18C18 14.4183 14.4183 18 10 18C5.58172 18 2 14.4183 2 10Z"
-                                        fill="currentColor"
-                                    />
-                                    <path
-                                        d="M12 2.25195C14.8113 2.97552 17.0245 5.18877 17.748 8.00004H12V2.25195Z"
-                                        fill="currentColor"
-                                    />
+                                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
                                 </svg>
                             </div>
                             <div class="flex-auto my-1">
@@ -46,16 +40,11 @@
                                             <div class="text-white mt-4 p-4 w-full flex relative justify-start border-l-4 border-SSAgold-100">
                                                 <button class="w-full inline-flex border border-transparent text-sm leading-4 font-medium rounded-md text-white hover:text-SSAgold-100 focus:outline-none transition ease-in-out duration-150">
                                                     <div class="mr-1 flex-shrink-0 my-auto">
-                                                        <svg class="fill-current w-5 h-5" aria-hidden="true" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M2 10C2 5.58172 5.58172 2 10 2V10H18C18 14.4183 14.4183 18 10 18C5.58172 18 2 14.4183 2 10Z"
-                                                                fill="currentColor"
-                                                            />
-                                                            <path
-                                                                d="M12 2.25195C14.8113 2.97552 17.0245 5.18877 17.748 8.00004H12V2.25195Z"
-                                                                fill="currentColor"
-                                                            />
-                                                        </svg>
+                                                        <div class="mr-1 flex-shrink-0 my-auto">
+                                                            <svg class="fill-current w-5 h-5" aria-hidden="true" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                                            </svg>
+                                                        </div>
                                                     </div>
                                                     <div class="my-1">
                                                         <span class="mx-4">Documentación</span>
@@ -74,7 +63,7 @@
                                             Oficios
                                         </jet-dropdown-link>
                                         <jet-dropdown-link :href="route('profile.show')">
-                                            Atenta nota
+                                            Atentas notas
                                         </jet-dropdown-link>
 
                                         <jet-dropdown-link :href="route('api-tokens.index')">

@@ -1,5 +1,5 @@
 <template>
-    <div class="flex h-screen bg-gray-200 font-roboto">
+    <div class="flex h-screen bg-gray-200">
         <backend-sidebar />
         <div class="flex-1 flex flex-col overflow-hidden">
             <backend-header />

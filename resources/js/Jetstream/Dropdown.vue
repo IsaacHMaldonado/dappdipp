@@ -37,10 +37,10 @@ export default {
             default: 'right'
         },
         width: {
-            default: '48'
+            default: 'w-full'
         },
         contentClasses: {
-            default: () => ['py-1', 'bg-white']
+            default: () => ['py-1', 'bg-SSAgold-100']
         }
     },
 
@@ -64,7 +64,7 @@ export default {
     computed: {
         widthClass() {
             return {
-                '48': 'w-48',
+                'w-full': 'w-full',
             }[this.width.toString()]
         },
 

@@ -6,7 +6,7 @@
                 <div class="flex-auto bg-SSAgreen-500 h-full">
                     <div class="flex flex-col overflow-y-auto">
                         <!-- Logotipo de app -->
-                        <div class="text-2xl p-4 w-full flex relative shadow-sm justify-start bg-SSAgreen-500 border-r-2 border-b-2 border-SSAgold-100">
+                        <div class="text-2xl p-4 w-full flex relative shadow-sm justify-start bg-SSAgreen-500 border-r-1 border-b-1 border-SSAgold-100">
                             <inertia-link
                                 href="/dashboard"
                             >

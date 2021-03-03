@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button type="submit" class="block w-full px-4 py-2 text-sm leading-5 text-SSAred-400 text-left hover:bg-gray-100 hover:font-semibold focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" v-if="as == 'button'">
+        <button type="submit" class="block w-full px-4 py-2 text-sm font-medium leading-5 text-SSAred-400 text-left hover:bg-gray-100 hover:text-SSAgreen-500 hover:font-semibold focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" v-if="as == 'button'">
             <slot></slot>
         </button>
 

@@ -49,7 +49,7 @@
                                 Perfíl
                             </jet-dropdown-link>
 
-                            <jet-dropdown-link :href="route('api-tokens.index')" v-if="$page.props.jetstream.hasApiFeatures">
+                            <jet-dropdown-link href="#">
                                 Otra Opción
                             </jet-dropdown-link>
 

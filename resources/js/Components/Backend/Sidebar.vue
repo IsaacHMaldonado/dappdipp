@@ -20,8 +20,9 @@
                         <!-- Menú -->
                         <inertia-link
                             class="text-white mt-4 p-4 w-full flex relative justify-start border-l-4 border-SSAgold-100 hover:text-SSAgold-100"
-                            :class="[$page.url === '/dashboard' ? activeClass : inactiveClass]"
-                            href="/dashboard"
+                            :class="[$page.url === '/Directorio' ? activeClass : inactiveClass]"
+                            href="/Directorio"
+                            :active="route().current().includes('Circulares')"
                         >
                             <div class="mr-1 flex-shrink-0 my-auto">
 
@@ -59,14 +60,14 @@
                                             Gestión de Documentación
                                         </div>
 
-                                        <jet-dropdown-link :href="route('profile.show')">
+                                        <jet-dropdown-link href="/Oficios" :active="route().current().includes('Oficios')">
                                             Oficios
                                         </jet-dropdown-link>
-                                        <jet-dropdown-link :href="route('profile.show')">
+                                        <jet-dropdown-link href="/AttNotas" :active="route().current().includes('AttNotas')">
                                             Atentas notas
                                         </jet-dropdown-link>
 
-                                        <jet-dropdown-link :href="route('api-tokens.index')">
+                                        <jet-dropdown-link href="/Circulares" :active="route().current().includes('Circulares')">
                                             Circulares
                                         </jet-dropdown-link>
                                     </template>

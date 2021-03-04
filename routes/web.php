@@ -2,6 +2,10 @@
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DirectorioController;
+use App\Http\Controllers\OficiosController;
+use App\Http\Controllers\AttNotasController;
+use App\Http\Controllers\CircularesController;
 use Inertia\Inertia;
 
 /*
@@ -29,7 +33,7 @@ Route::group(["middleware" => ['auth:sanctum', 'verified']], function () {
         return Inertia::render('Dashboard');
     })->name("dashboard");
 
-    Route::resource("Directorio", DirectorioController::class)->except(["show"]);
+    Route::resource("directorio", DirectorioController::class)->except(["show"]);
     Route::resource("Oficios", OficiosController::class)->except(["show"]);
     Route::resource("AttNotas", AttNotasController::class)->except(["show"]);
     Route::resource("Circulares", CircularesController::class)->except(["show"]);

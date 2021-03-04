@@ -19,7 +19,10 @@ class CreateDirectoriosTable extends Migration
             $table->foreignId('titulo_grado')->constrained('cat_titulos');
             $table->string('nombre')->unique();
             $table->text('cargo');
-            $table->foreignId('id_tema')->constrained('cat_temas');
+            $table->string('email')->unique();
+            $table->text('direccion');
+            $table->foreignId('id')->constrained('cat_titulos');
+            $table->text('tema_especifico');
             $table->unsignedBigInteger('phone_local');
             $table->unsignedBigInteger('phone_ext')->nullable();
             $table->unsignedBigInteger('movile_phone')->nullable();

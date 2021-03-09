@@ -20,7 +20,7 @@
                         <!-- Menú -->
                         <inertia-link
                             class="text-white mt-4 p-4 w-full flex relative justify-start border-l-4 border-SSAgold-100 hover:text-SSAgold-100"
-                            :class="[$page.url === route().current().includes('directorio') ? activeClass : inactiveClass]"
+                            :class="[route().current().includes('directorio') ? activeClass : inactiveClass]"
                             href="/directorio"
                         >
                             <div class="mr-1 flex-shrink-0 my-auto">

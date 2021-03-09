@@ -35,14 +35,17 @@ class Directorio extends Model
         }
         $query->when(session('search'), function ($query, $search){
             $query->where('ramo_general','LIKE','%'.$search.'%')
-                  ->where('unidad','LIKE','%'.$search.'%')
-                  ->where('titulo_grado','LIKE','%'.$search.'%')
-                  ->where('nombre','LIKE','%'.$search.'%')
-                  ->where('cargo','LIKE','%'.$search.'%')
-                  ->where('id_tema','LIKE','%'.$search.'%')
-                  ->where('phone_local','LIKE','%'.$search.'%')
-                  ->where('phone_ext','LIKE','%'.$search.'%')
-                  ->where('movile_phone','LIKE','%'.$search.'%');
+                  ->orWhere('unidad','LIKE','%'.$search.'%')
+                  ->orWhere('titulo_grado','LIKE','%'.$search.'%')
+                  ->orWhere('nombre','LIKE','%'.$search.'%')
+                  ->orWhere('cargo','LIKE','%'.$search.'%')
+                  ->orWhere('id_tema','LIKE','%'.$search.'%')
+                  ->orWhere('tema_especifico','LIKE','%'.$search.'%')
+                  ->orWhere('email','LIKE','%'.$search.'%')
+                  ->orWhere('phone_local','LIKE','%'.$search.'%')
+                  ->orWhere('phone_ext','LIKE','%'.$search.'%')
+                  ->orWhere('movile_phone','LIKE','%'.$search.'%')
+                  ->orWhere('direccion','LIKE','%'.$search.'%');
         });
     }
 }

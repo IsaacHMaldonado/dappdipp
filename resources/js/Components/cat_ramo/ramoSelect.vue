@@ -12,21 +12,28 @@
             :id="id"
             v-bind="$attrs"
             :class="{ 'text-SSAwine-300': error }"
-            :value="value"
-            @select="$emit('select', $event.target.value)"
             class="shadow appearance-none border rounded font-semibold w-full py-2 px-3 text-SSAgreen-300 leading-tight focus:outline-none focus:shadow-outline"
+
         >
-        <option :value="registroRamo.id">{{registroRamo.ramo_general}} - {{registroRamo.descripcion}}</option>
+        <obtenerRegistros
+
+        v-for="registroRamo in selectRamo"
+            :key="registroRamo.id"
+            :registroRamo="registroRamo"
+            />
         </select>
         <div v-if="error" class="text-SSAred-300 font-semibold text-xs">{{ error }}</div>
     </div>
 </template>
 
 <script>
+
+import obtenerRegistros from './selectRamoReg.vue';
     export default {
+        components: {obtenerRegistros,},
         name: "ramoSelect",
         props: {
-            registroRamo: Object,
+            selectRamo: Object,
         }
     }
 </script>

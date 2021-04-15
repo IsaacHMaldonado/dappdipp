@@ -8,11 +8,7 @@
                 label="Ramo Correspondiente"
                 v-model="form.ramo"
                 :error="errors.ramo"
-
-                v-for="registroRamo in selectRamo"
-                :key="registroRamo.id"
-                :registroRamo="registroRamo"
-
+                :selectRamo="selectRamo"
             />
         </div>
         <div class="mb-4">
@@ -47,7 +43,7 @@
 <script>
     import TextInput from "../TextInput.vue";
     import TextAreaInput from "../TextAreaInput.vue";
-    import ramoSelect from "../cat_ramo/ramoSelect";
+    import ramoSelect from "../cat_ramo/ramoSelect.vue";
     export default {
         name: "ProjectForm",
         components: {

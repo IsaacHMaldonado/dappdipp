@@ -26,6 +26,8 @@
         "vue-loader": "^16.1.2"
     },
     "dependencies": {
-        "@ocrv/vue-tailwind-pagination": "^0.0.4"
+        "@ocrv/vue-tailwind-pagination": "^0.0.4",
+        "@vueform/multiselect": "^1.4.0",
+        "vue-multiselect": "^2.1.6"
     }
 }

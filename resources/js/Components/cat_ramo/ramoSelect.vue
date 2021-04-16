@@ -15,6 +15,8 @@
             class="shadow appearance-none border rounded font-semibold w-full py-2 px-3 text-SSAgreen-300 leading-tight focus:outline-none focus:shadow-outline"
 
         >
+        <option value="" selected>Seleccione una Unidad</option>
+
         <obtenerRegistros
 
         v-for="registroRamo in selectRamo"

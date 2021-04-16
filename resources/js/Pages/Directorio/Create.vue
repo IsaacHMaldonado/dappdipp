@@ -8,41 +8,56 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <DirectorioForm :selectRamo="selectRamo" :errors="errors" :form="form" @submit="submit">
-                    <template #buttons>
-                        <loading-button
-                            :loading="processing"
-                            class="btn-indigo"
-                            type="submit"
-                        >
-                            Dar de Alta Enlace
-                        </loading-button>
-                    </template>
-                </DirectorioForm>
+
+                <form
+                    @submit.prevent="$emit('submit')"
+                    class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+                >
+
+                    <multiselect
+                        :options="mechanics"
+                        label="name"
+                        track-by="ramo_general"
+                        @search-change="onSearchMechanicsChange"
+                        @input="onSelectedMechanic"
+                        v-model="mechanic_id"
+                        placeholder="Buscar Mecanico"></multiselect>
+
+                    <div class="px-8 py-4 border-t border-gray-200 flex justify-center items-center">
+                        <slot name="buttons" />
+                    </div>
+                </form>
+
+
+
+
+
             </div>
         </div>
     </backend-layout>
 </template>
 <script>
 import BackendLayout from '@/Layouts/BackendLayout';
-import DirectorioForm from "@/Components/Directorio_dapp/enlaceForm";
 import LoadingButton from "@/Components/Backend/LoadingButton";
+import Multiselect from '@vueform/multiselect';
+
 export default {
     name: 'createEnlace',
-    components:{BackendLayout,LoadingButton,DirectorioForm},
+    components:{BackendLayout,LoadingButton,Multiselect},
     props: {
         errors: Object,
-        selectRamo: Object
+        selectRamo: Object,
+        mechanics:{
+            type: Array,
+            default: ()=>[]
+        }
     },
     data() {
         return {
-            processing: false,
-            form: {
-                name: null,
-                excerpt: null,
-                content: null,
-                ramo: null,
-            }
+            form: this.$inertia.form({
+                mechanic_id:'',
+                consultant_id:'',
+            }),
         }
     },
     methods: {
@@ -50,7 +65,14 @@ export default {
                 this.processing = true;
                 this.$inertia.post(this.route('directorio.store'), this.form)
                     .then(() => this.processing = false);
-            }
+            },
+            onSearchMechanicsChange(){
+                console.log('onSearchMechanicsChange');
+            },
+            onSelectedMechanic(){
+                console.log('onSelectedMechanic');
+            },
+
         }
 }
 </script>

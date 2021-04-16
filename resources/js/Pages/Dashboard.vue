@@ -13,7 +13,7 @@
 <script>
     import AppLayout from '@/Layouts/AppLayout'
     import Welcome from '@/Jetstream/Welcome'
-import BackendLayout from '../Layouts/BackendLayout.vue'
+import BackendLayout from '@/Layouts/BackendLayout'
 
     export default {
         components: {

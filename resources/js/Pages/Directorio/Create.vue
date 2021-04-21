@@ -16,12 +16,12 @@
 
                     <multiselect
                         :options="mechanics"
-                        label="name"
+                        label="descripcion"
                         track-by="ramo_general"
-                        @search-change="onSearchMechanicsChange"
-                        @input="onSelectedMechanic"
-                        v-model="mechanic_id"
-                        placeholder="Buscar Mecanico"></multiselect>
+                        @search-change="onSearchRamoChange"
+                        @input="onSelectedRamo"
+                        v-model="selectedRamo"
+                        placeholder="Buscar Ramo"></multiselect>
 
                     <div class="px-8 py-4 border-t border-gray-200 flex justify-center items-center">
                         <slot name="buttons" />
@@ -39,7 +39,7 @@
 <script>
 import BackendLayout from '@/Layouts/BackendLayout';
 import LoadingButton from "@/Components/Backend/LoadingButton";
-import Multiselect from '@vueform/multiselect';
+import Multiselect from '@suadelabs/vue3-multiselect';
 
 export default {
     name: 'createEnlace',
@@ -54,10 +54,7 @@ export default {
     },
     data() {
         return {
-            form: this.$inertia.form({
-                mechanic_id:'',
-                consultant_id:'',
-            }),
+            selectedRamo:null,
         }
     },
     methods: {
@@ -66,11 +63,16 @@ export default {
                 this.$inertia.post(this.route('directorio.store'), this.form)
                     .then(() => this.processing = false);
             },
-            onSearchMechanicsChange(){
-                console.log('onSearchMechanicsChange');
+            onSearchRamoChange(term){
+                this.$inertia.get('/directorio/create',{term},{
+                    preserveState: true,
+                    preserveScroll: true,
+                    replace: true
+                });
             },
-            onSelectedMechanic(){
-                console.log('onSelectedMechanic');
+            onSelectedRamo(ramo){
+                this.selectedRamo= ramo;
+                console.log('Hola');
             },
 
         }

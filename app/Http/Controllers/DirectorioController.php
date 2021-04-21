@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\cat_ramos;
 use App\Models\Directorio;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Collection;
 use Inertia\Inertia;
 
 class DirectorioController extends Controller
@@ -24,6 +25,9 @@ class DirectorioController extends Controller
     public function create(){
         return Inertia::render('Directorio/Create',[
             "selectRamo"=> cat_ramos::all(),
+            "mechanics"=> cat_ramos::select()->when(request('term'), function ( $query, $term) {
+                $query->where('descripcion','like',"%$term%");
+            })->get(),
         ]);
     }
     public function store(){

@@ -15,13 +15,19 @@
                 >
 
                     <multiselect
-                        :options="mechanics"
-                        label="descripcion"
+                        :options="selectRamo"
+                        :custom-label="nameWithRamo"
                         track-by="ramo_general"
-                        @search-change="onSearchRamoChange"
-                        @input="onSelectedRamo"
                         v-model="selectedRamo"
+                        @select="AsignarUnidad($event)"
                         placeholder="Buscar Ramo"></multiselect>
+
+                    <multiselect
+                        :options="selectUnidad"
+                        :custom-label="nameWithUnidad"
+                        track-by="id"
+                        v-model="selectedUnidad"
+                        placeholder="Buscar Unidad"></multiselect>
 
                     <div class="px-8 py-4 border-t border-gray-200 flex justify-center items-center">
                         <slot name="buttons" />
@@ -46,8 +52,11 @@ export default {
     components:{BackendLayout,LoadingButton,Multiselect},
     props: {
         errors: Object,
-        selectRamo: Object,
-        mechanics:{
+        selectRamo:{
+            type: Array,
+            default: ()=>[]
+        },
+        selectUnidad:{
             type: Array,
             default: ()=>[]
         }
@@ -55,6 +64,7 @@ export default {
     data() {
         return {
             selectedRamo:null,
+            selectedUnidad: null,
         }
     },
     methods: {
@@ -63,18 +73,25 @@ export default {
                 this.$inertia.post(this.route('directorio.store'), this.form)
                     .then(() => this.processing = false);
             },
-            onSearchRamoChange(term){
-                this.$inertia.get('/directorio/create',{term},{
-                    preserveState: true,
-                    preserveScroll: true,
-                    replace: true
-                });
-            },
-            onSelectedRamo(ramo){
-                this.selectedRamo= ramo;
-                console.log('Hola');
-            },
+            AsignarUnidad($event){
+                    console.log($event.ramo_general)
+                    let ramo_general=$event.ramo_general
+                    this.$inertia.get('/directorio/create', {ramo_general},{
+                        preserveState: true,
+                        preserveScroll: true,
+                        replace: true,
 
-        }
+                    })
+            },
+            nameWithRamo ({ ramo_general, descripcion }) {
+                return `${ramo_general} - ${descripcion}`
+            },
+            nameWithUnidad ({ unidad, Descripcion }) {
+                return `${unidad} - ${Descripcion}`
+            }
+
+        },
+    watch: {
+    },
 }
 </script>

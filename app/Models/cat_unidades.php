@@ -32,10 +32,10 @@ class cat_unidades extends Model
 
     public function scopeFilter(Builder $query, array $filters) {
         if (!request('page')) {
-            session()->put('ramo', $filters['ramo'] ?? null);
+            session()->put('selectRamo', $filters['selectRamo'] ?? null);
         }
-        $query->when(session('ramo'), function ($query, $ramo){
-            $query->where('ramo_general','=',$ramo);
+        $query->when(session('selectRamo'), function ($query, $selectRamo){
+            $query->where('ramo_general','=',$selectRamo);
         });
     }
 

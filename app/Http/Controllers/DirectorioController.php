@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\cat_ramos;
+use App\Models\cat_unidades;
 use App\Models\Directorio;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Collection;
@@ -23,10 +24,15 @@ class DirectorioController extends Controller
         ]);
     }
     public function create(){
+        if ( ! session()->has("selectedRamo")) {
+            session()->put("selectedRamo", null);
+        }
         return Inertia::render('Directorio/Create',[
-            "selectRamo"=> cat_ramos::all(),
-            "mechanics"=> cat_ramos::select()->when(request('term'), function ( $query, $term) {
-                $query->where('descripcion','like',"%$term%");
+            "selectRamo"=> cat_ramos::select()->when(request('term'), function ( $query, $term) {
+                $query->where('ramo_general','=',$term);
+            })->get(),
+            "selectUnidad" => cat_unidades::select()->when(request('ramo_general'), function ( $query, $ramo_general) {
+                $query->where('ramo_general','=',$ramo_general);
             })->get(),
         ]);
     }

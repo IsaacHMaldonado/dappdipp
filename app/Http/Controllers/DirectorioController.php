@@ -31,8 +31,8 @@ class DirectorioController extends Controller
             "selectRamo"=> cat_ramos::select()->when(request('term'), function ( $query, $term) {
                 $query->where('ramo_general','=',$term);
             })->get(),
-            "selectUnidad" => cat_unidades::select()->when(request('ramo_general'), function ( $query, $ramo_general) {
-                $query->where('ramo_general','=',$ramo_general);
+            "selectUnidad" => cat_unidades::when(request('search'), function ( $query, $search) {
+                $query->where('ramo_general','=',base64_decode ($search));
             })->get(),
         ]);
     }

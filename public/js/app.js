@@ -17561,6 +17561,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_DropdownLink__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Jetstream/DropdownLink */ "./resources/js/Jetstream/DropdownLink.vue");
 /* harmony import */ var _Jetstream_NavLink__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Jetstream/NavLink */ "./resources/js/Jetstream/NavLink.vue");
 /* harmony import */ var _Jetstream_ResponsiveNavLink__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Jetstream/ResponsiveNavLink */ "./resources/js/Jetstream/ResponsiveNavLink.vue");
+/* harmony import */ var _Components_UI_FlashMessages__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/Components/UI/FlashMessages */ "./resources/js/Components/UI/FlashMessages.vue");
+
 
 
 
@@ -17578,7 +17580,8 @@ __webpack_require__.r(__webpack_exports__);
     JetDropdown: _Jetstream_Dropdown__WEBPACK_IMPORTED_MODULE_4__.default,
     JetDropdownLink: _Jetstream_DropdownLink__WEBPACK_IMPORTED_MODULE_5__.default,
     JetNavLink: _Jetstream_NavLink__WEBPACK_IMPORTED_MODULE_6__.default,
-    JetResponsiveNavLink: _Jetstream_ResponsiveNavLink__WEBPACK_IMPORTED_MODULE_7__.default
+    JetResponsiveNavLink: _Jetstream_ResponsiveNavLink__WEBPACK_IMPORTED_MODULE_7__.default,
+    FlashMessages: _Components_UI_FlashMessages__WEBPACK_IMPORTED_MODULE_8__.default
   }
 });
 
@@ -18393,7 +18396,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       selectedRamo: null,
-      selectedUnidad: null
+      selectedUnidad: null,
+      viewSelectUnidad: false
     };
   },
   methods: {
@@ -18407,9 +18411,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     AsignarUnidad: function AsignarUnidad($event) {
       console.log($event.ramo_general);
-      var ramo_general = $event.ramo_general;
+      this.viewSelectUnidad = true, this.selectedUnidad = '';
+      var search = btoa($event.ramo_general);
       this.$inertia.get('/directorio/create', {
-        ramo_general: ramo_general
+        search: search
       }, {
         preserveState: true,
         preserveScroll: true,
@@ -23872,7 +23877,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", {
-  "class": "font-semibold text-xl text-gray-800 leading-tight"
+  "class": "font-semibold text-xl text-SSAwine-400 leading-tight"
 }, " Crea un nuevo Enlace Estratégico ", -1
 /* HOISTED */
 );
@@ -23884,6 +23889,59 @@ var _hoisted_3 = {
   "class": "max-w-7xl mx-auto sm:px-6 lg:px-8"
 };
 var _hoisted_4 = {
+  "class": "flex flex-wrap -mx-3 mb-6"
+};
+var _hoisted_5 = {
+  "class": "w-full md:w-1/2 px-3 mb-6 md:mb-0"
+};
+
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "class": "block uppercase tracking-wide text-SSAwine-400 text-xs font-bold mb-2",
+  "for": "selectedRamo"
+}, " Ramo Administrativo ", -1
+/* HOISTED */
+);
+
+var _hoisted_7 = {
+  "class": "w-full md:w-1/2 px-3 mb-6 md:mb-0"
+};
+
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "class": "block uppercase tracking-wide text-SSAwine-400 text-xs font-bold mb-2",
+  "for": "selectedUnidad"
+}, " Unidad Responsable ", -1
+/* HOISTED */
+);
+
+var _hoisted_9 = {
+  "class": "flex flex-wrap -mx-3 mb-2"
+};
+var _hoisted_10 = {
+  "class": "w-full md:w-1/3 px-3 mb-6 md:mb-0"
+};
+
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "class": "block uppercase tracking-wide text-SSAwine-400 text-xs font-bold mb-2",
+  "for": "tituloAcademico"
+}, " Titulo académico ", -1
+/* HOISTED */
+);
+
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  "class": "w-full md:w-2/3 px-3 mb-6 md:mb-0"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "class": "block uppercase tracking-wide text-SSAwine-400 text-xs font-bold mb-2",
+  "for": "grid-zip"
+}, " Nombre completo "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+  "class": "appearance-none block w-full bg-white text-SSAgreen-400 border border-SSAgold-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-SSAgreen-400",
+  id: "grid-zip",
+  type: "text",
+  placeholder: "Ingresa el nombre completo"
+})], -1
+/* HOISTED */
+);
+
+var _hoisted_13 = {
   "class": "px-8 py-4 border-t border-gray-200 flex justify-center items-center"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -23897,11 +23955,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("form", {
-        onSubmit: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+        onSubmit: _cache[5] || (_cache[5] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return _ctx.$emit('submit');
         }, ["prevent"])),
-        "class": "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_multiselect, {
+        "class": "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full w-full"
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_multiselect, {
         options: $props.selectRamo,
         "custom-label": $options.nameWithRamo,
         "track-by": "ramo_general",
@@ -23909,13 +23967,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
           return $data.selectedRamo = $event;
         }),
+        id: "selectedRamo",
         onSelect: _cache[2] || (_cache[2] = function ($event) {
           return $options.AsignarUnidad($event);
         }),
-        placeholder: "Buscar Ramo"
+        placeholder: "Seleccionar Ramo"
       }, null, 8
       /* PROPS */
-      , ["options", "custom-label", "modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_multiselect, {
+      , ["options", "custom-label", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_multiselect, {
         options: $props.selectUnidad,
         "custom-label": $options.nameWithUnidad,
         "track-by": "id",
@@ -23923,10 +23982,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
           return $data.selectedUnidad = $event;
         }),
-        placeholder: "Buscar Unidad"
+        id: "selectedUnidad",
+        placeholder: "Seleccionar Unidad"
       }, null, 8
       /* PROPS */
-      , ["options", "custom-label", "modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "buttons")])], 32
+      , ["options", "custom-label", "modelValue"])], 512
+      /* NEED_PATCH */
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.viewSelectUnidad]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+        "class": "appearance-none block w-full bg-white text-SSAgreen-400 border border-SSAgold-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-SSAgreen-400",
+        "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+          return _ctx.tituloAcademico = $event;
+        }),
+        id: "tituloAcademico",
+        type: "text",
+        placeholder: "titulo Academico"
+      }, null, 512
+      /* NEED_PATCH */
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.tituloAcademico]])]), _hoisted_12]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "buttons")])], 32
       /* HYDRATE_EVENTS */
       )])])];
     }),

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\cat_ramos;
+use App\Models\cat_temas;
 use App\Models\cat_unidades;
 use App\Models\Directorio;
 use Illuminate\Http\Request;
@@ -34,6 +35,7 @@ class DirectorioController extends Controller
             "selectUnidad" => cat_unidades::when(request('search'), function ( $query, $search) {
                 $query->where('ramo_general','=',base64_decode ($search));
             })->get(),
+            "selectTemaGeneral" => cat_temas::all(),
         ]);
     }
     public function store(){

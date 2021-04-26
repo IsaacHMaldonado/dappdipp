@@ -2,7 +2,7 @@
     <div class="w-full">
         <label
             :class="{ 'text-SSAred-300': error }"
-            class="block text-SSAgreen-300 text-sm font-bold mb-2"
+            class="block uppercase tracking-wide text-SSAwine-400 text-xs font-bold mb-2"
             :for="id"
         >
             {{ label }}
@@ -14,7 +14,7 @@
             :class="{ 'text-SSAwine-300': error }"
             :value="value"
             @input="$emit('input', $event.target.value)"
-            class="shadow appearance-none border rounded font-semibold w-full py-2 px-3 text-SSAgreen-300 leading-tight focus:outline-none focus:shadow-outline"
+            class="appearance-none block w-full bg-white text-SSAgreen-400 border border-SSAgold-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-SSAgreen-400"
         ></textarea>
         <div v-if="error" class="text-SSAred-300 font-semibold text-xs">{{ error }}</div>
     </div>

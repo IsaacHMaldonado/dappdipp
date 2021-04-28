@@ -18537,7 +18537,8 @@ __webpack_require__.r(__webpack_exports__);
         movile_phone: this.directorio.movile_phone,
         phone_local: this.directorio.phone_local,
         email: this.directorio.email,
-        tema_especifico: this.directorio.tema_especifico
+        tema_especifico: this.directorio.tema_especifico,
+        idUpdate: this.directorio.id
       }
     };
   },
@@ -18546,7 +18547,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.processing = true;
-      this.$inertia.post(this.route('directorio.store'), this.form).then(function () {
+      this.$inertia.put(this.route('directorio.update', this.project.id), this.form).then(function () {
         return _this.processing = false;
       });
     },
@@ -18555,11 +18556,13 @@ __webpack_require__.r(__webpack_exports__);
       this.viewSelectUnidad = true, this.form.selectedUnidad = '';
       this.form.ramo_general = $event.id;
       var search = btoa($event.ramo_general);
-      this.$inertia.post(this.route('directorio.createTwo', search, {
+      this.$inertia.get('/unidades/create', {
+        search: search
+      }, {
         preserveState: true,
         preserveScroll: true,
         replace: true
-      }));
+      });
     },
     AsignarIdUnidad: function AsignarIdUnidad($event) {
       console.log($event.id);
@@ -24445,7 +24448,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", {
   "class": "font-semibold text-xl text-SSAwine-400 leading-tight"
-}, " Crea un nuevo Enlace Estratégico ", -1
+}, " Actualizar Enlace Estratégico ", -1
 /* HOISTED */
 );
 
@@ -24642,7 +24645,7 @@ var _hoisted_43 = {
   "class": "w-full md:w-1/3 px-3 mb-6 md:mb-0"
 };
 
-var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Dar de Alta Enlace ");
+var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Actualizar Enlace ");
 
 var _hoisted_45 = {
   "class": "px-8 py-4 border-t border-gray-200 flex justify-center items-center"

@@ -2,7 +2,7 @@
     <backend-layout>
         <template #header>
             <h2 class="font-semibold text-xl text-SSAwine-400 leading-tight">
-                Crea un nuevo Enlace Estratégico
+                Actualizar Enlace Estratégico
             </h2>
         </template>
 
@@ -138,7 +138,7 @@
                                 type="submit"
                                 @submit="submit"
                             >
-                                Dar de Alta Enlace
+                                Actualizar Enlace
 
                             </loading-button>
 
@@ -210,6 +210,7 @@ export default {
                 phone_local:this.directorio.phone_local,
                 email:this.directorio.email,
                 tema_especifico:this.directorio.tema_especifico,
+                idUpdate:this.directorio.id,
 
 
 
@@ -219,9 +220,8 @@ export default {
     methods: {
         submit() {
             this.processing = true
-            this.$inertia.post(this.route('directorio.store'), this.form)
-                .then(() => this.processing = false);
-
+            this.$inertia.put(this.route('directorio.update', this.project.id), this.form)
+                .then(() => this.processing = false)
         },
         AsignarUnidad($event){
             console.log($event.ramo_general)
@@ -229,12 +229,12 @@ export default {
                 this.form.selectedUnidad=''
             this.form.ramo_general=$event.id
             let search=btoa($event.ramo_general)
-            this.$inertia.post(this.route('directorio.createTwo', search,{
+            this.$inertia.get('/unidades/create', {search},{
                 preserveState: true,
                 preserveScroll: true,
                 replace: true,
 
-            }));
+            })
         },
         AsignarIdUnidad($event){
             console.log($event.id)

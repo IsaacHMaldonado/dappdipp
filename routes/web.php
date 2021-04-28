@@ -6,6 +6,7 @@ use App\Http\Controllers\DirectorioController;
 use App\Http\Controllers\OficiosController;
 use App\Http\Controllers\AttNotasController;
 use App\Http\Controllers\CircularesController;
+use App\Http\Controllers\CatUnidadesController;
 use Inertia\Inertia;
 
 /*
@@ -37,4 +38,5 @@ Route::group(["middleware" => ['auth:sanctum', 'verified']], function () {
     Route::resource("Oficios", OficiosController::class)->except(["show"]);
     Route::resource("AttNotas", AttNotasController::class)->except(["show"]);
     Route::resource("Circulares", CircularesController::class)->except(["show"]);
+    Route::resource("unidades", CatUnidadesController::class)->except(["show"]);
 });

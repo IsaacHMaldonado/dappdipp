@@ -44,9 +44,9 @@ class DirectorioController extends Controller
                 "ramo_general"=>"required",
                 "unidad"=>"required",
                 "titulo_grado"=>"required",
-                "nombre"=>"required",
+                "nombre"=>"required|unique:directorios",
                 "cargo"=>"required|min:10",
-                "email"=>"required",
+                "email"=>"required|unique:directorios",
                 "direccion"=>"required|min:10|max:200",
                 "tema_general"=>"required",
                 "tema_especifico"=>"required",
@@ -84,15 +84,15 @@ class DirectorioController extends Controller
         ]);
 
     }
-    public function createTwo(){
-        if ( ! session()->has("selectedRamo")) {
-            session()->put("selectedRamo", null);
-        }
-        return Inertia::render('Directorio/Edit',[
-        "selectUnidad" => cat_unidades::select()->when(request('search'), function ( $query, $search) {
-            $query->where('ramo_general','=',base64_decode ($search));
-        })->get(),
-        ]);
+    public function update(Directorio $directorio){
+        $directorio->update(
+            $this->validate(request(),[
+                'name'=>'required|unique:projects,name,' . $directorio->id,
+                'excerpt'=>'required|min:10|max:200',
+                'content'=>'required|min:10|max:1000',
+            ])
+        );
+        return redirect()->route('projects.index')->with('success', '¡Proyecto Actualizado!');
     }
 
 }

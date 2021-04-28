@@ -6,8 +6,7 @@ use App\Models\cat_ramos;
 use App\Models\cat_temas;
 use App\Models\cat_unidades;
 use App\Models\Directorio;
-use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Collection;
+
 use Inertia\Inertia;
 
 class DirectorioController extends Controller
@@ -30,7 +29,7 @@ class DirectorioController extends Controller
         }
         return Inertia::render('Directorio/Create',[
             "selectRamo"=> cat_ramos::select()->when(request('term'), function ( $query, $term) {
-                $query->where('ramo_general','=',$term);
+                $query->where('id','=',$term);
             })->get(),
             "selectUnidad" => cat_unidades::when(request('search'), function ( $query, $search) {
                 $query->where('ramo_general','=',base64_decode ($search));
@@ -38,14 +37,62 @@ class DirectorioController extends Controller
             "selectTemaGeneral" => cat_temas::all(),
         ]);
     }
+
     public function store(){
         Directorio::create(
             $this->validate(request(),[
-                "name"=>"required|unique:projects",
-                "excerpt"=>"required|min:10|max:200",
-                "content"=>"required|min:10|max:1000",
+                "ramo_general"=>"required",
+                "unidad"=>"required",
+                "titulo_grado"=>"required",
+                "nombre"=>"required",
+                "cargo"=>"required|min:10",
+                "email"=>"required",
+                "direccion"=>"required|min:10|max:200",
+                "tema_general"=>"required",
+                "tema_especifico"=>"required",
+                "phone_local"=>"required",
+                "movile_phone"=>"required",
             ])
         );
-        return redirect()->route('directorio.index')->with('success','¡Proyecto Creado!');
+        return redirect()->route('directorio.index')->with('success','¡Enlace Estrategico Creado!');
     }
+
+    public function edit(Directorio $directorio){
+        return Inertia::render('Directorio/Edit',[
+            'directorio' => [
+                'id' =>  $directorio->id,
+                'ramo_general' => $directorio->ramo_general,
+                'unidad' => $directorio->unidad,
+                'titulo_grado' => $directorio->titulo_grado,
+                'nombre' => $directorio->nombre,
+                'cargo' => $directorio->cargo,
+                'email' => $directorio->email,
+                'direccion' => $directorio->direccion,
+                'tema_general' => $directorio->tema_general,
+                'tema_especifico' => $directorio->tema_especifico,
+                'phone_local' => $directorio->phone_local,
+                'movile_phone' => $directorio->movile_phone,
+            ],
+            "selectRamo"=> cat_ramos::select()->when(request('term'), function ( $query, $term) {
+                $query->where('id','=',$term);
+            })->get(),
+            "selectUnidad" => cat_unidades::select()->when(request('search'), function ( $query, $search) {
+                $query->where('ramo_general','=',base64_decode ($search));
+            })->get(),
+            "selectTemaGeneral" => cat_temas::all(),
+
+        ]);
+
+    }
+    public function createTwo(){
+        if ( ! session()->has("selectedRamo")) {
+            session()->put("selectedRamo", null);
+        }
+        return Inertia::render('Directorio/Edit',[
+        "selectUnidad" => cat_unidades::select()->when(request('search'), function ( $query, $search) {
+            $query->where('ramo_general','=',base64_decode ($search));
+        })->get(),
+        ]);
+    }
+
 }

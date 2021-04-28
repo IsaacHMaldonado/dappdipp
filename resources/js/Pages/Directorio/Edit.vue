@@ -19,13 +19,13 @@
                                 Ramo Administrativo
                             </label>
                             <multiselect
-                                 :options="selectRamo"
-                                 :custom-label="nameWithRamo"
-                                 track-by="id"
-                                 v-model="form.selectedRamo"
-                                 id="selectedRamo"
-                                 @select="AsignarUnidad($event)"
-                                 placeholder="Seleccionar Ramo"/>
+                                :options="selectRamo"
+                                :custom-label="nameWithRamo"
+                                track-by="id"
+                                v-model="form.selectedRamo"
+                                id="selectedRamo"
+                                @select="AsignarUnidad($event)"
+                                placeholder="Seleccionar Ramo"/>
                             <div v-if="errors" class="text-SSAred-300 font-semibold text-xs">{{ errors.ramo_general }}</div>
                         </div>
 
@@ -173,6 +173,7 @@ export default {
     components:{BackendLayout,LoadingButton,Multiselect},
     props: {
         errors: Object,
+        directorio: Object,
         selectRamo:{
             type: Array,
             default: ()=>[]
@@ -190,24 +191,25 @@ export default {
     data() {
         return {
             processing: false,
-            viewSelectUnidad: false,
+            viewSelectUnidad: true,
 
 
-             form: {
-                selectedRamo:null,
-                ramo_general:'',
-                unidad: null,
-                selectedItemUnidad:'',
-                selectedTemaGeneral: null,
-                tema_general: null,
-                titulo_grado:null,
-                nombre:null,
-                cargo:null,
-                direccion:null,
-                movile_phone:null,
-                phone_local:null,
-                email:null,
-                tema_especifico:null,
+            form: {
+                selectedRamo: this.selectRamo[this.directorio.ramo_general-1],
+                ramo_general:this.selectRamo[this.directorio.ramo_general-1].id,
+
+                selectedUnidad:this.selectUnidad[this.directorio.unidad-1],
+                unidad: this.selectUnidad[this.directorio.unidad-1].id,
+                selectedTemaGeneral: this.selectUnidad[this.directorio.tema_general-1],
+                tema_general: this.selectUnidad[this.directorio.tema_general-1].id,
+                titulo_grado:this.directorio.titulo_grado,
+                nombre:this.directorio.nombre,
+                cargo:this.directorio.cargo,
+                direccion:this.directorio.direccion,
+                movile_phone:this.directorio.movile_phone,
+                phone_local:this.directorio.phone_local,
+                email:this.directorio.email,
+                tema_especifico:this.directorio.tema_especifico,
 
 
 
@@ -215,45 +217,50 @@ export default {
         }
     },
     methods: {
-            submit() {
-                this.processing = true
-                this.$inertia.post(this.route('directorio.store'), this.form)
-                    .then(() => this.processing = false);
-
-            },
-            AsignarUnidad($event){
-                    console.log($event.ramo_general)
-                    this.viewSelectUnidad=true,
-                    this.form.selectedUnidad=''
-                    this.form.ramo_general=$event.id
-                    let search=btoa($event.ramo_general)
-                    this.$inertia.get('/directorio/create', {search},{
-                        preserveState: true,
-                        preserveScroll: true,
-                        replace: true,
-
-                    })
-            },
-            AsignarIdUnidad($event){
-                console.log($event.id)
-
-                this.form.unidad=$event.id
-            },
-            AsignarTemaGeneral($event){
-                console.log($event.id)
-                this.form.tema_general=$event.id
-            },
-            nameWithRamo ({ ramo_general, descripcion }) {
-                return `${ramo_general} - ${descripcion}`
-            },
-            nameWithUnidad ({ unidad, Descripcion }) {
-                return `${unidad} - ${Descripcion}`
-            },
-            nameWithTemaGeneral ({ id, desc_tema }) {
-                return `${id} - ${desc_tema}`
-            }
+        submit() {
+            this.processing = true
+            this.$inertia.post(this.route('directorio.store'), this.form)
+                .then(() => this.processing = false);
 
         },
+        AsignarUnidad($event){
+            console.log($event.ramo_general)
+            this.viewSelectUnidad=true,
+                this.form.selectedUnidad=''
+            this.form.ramo_general=$event.id
+            let search=btoa($event.ramo_general)
+            this.$inertia.post(this.route('directorio.createTwo', search,{
+                preserveState: true,
+                preserveScroll: true,
+                replace: true,
+
+            }));
+        },
+        AsignarIdUnidad($event){
+            console.log($event.id)
+
+            this.form.unidad=$event.id
+        },
+        AsignarTemaGeneral($event){
+            console.log($event.id)
+            this.form.tema_general=$event.id
+        },
+        nameWithRamo ({ ramo_general, descripcion }) {
+            return `${ramo_general} - ${descripcion}`
+        },
+        nameWithUnidad ({ unidad, Descripcion }) {
+            return `${unidad} - ${Descripcion}`
+        },
+        nameWithTemaGeneral ({ id, desc_tema }) {
+            return `${id} - ${desc_tema}`
+        },
+        destroy() {
+            this.processing = true
+            this.$inertia.delete(this.route('directorio.destroy', this.project.id))
+                .then(() => this.processing = false)
+        }
+
+    },
     watch: {
     },
 }

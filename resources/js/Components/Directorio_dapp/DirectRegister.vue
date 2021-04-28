@@ -52,7 +52,7 @@
                 class="px-6 py-4 flex items-center"
                 :href="route('directorio.edit', registroDirect.id)"
             >
-                {{ registroDirect.phone_local }} <br> {{registroDirect.phone_ext}}
+                {{ registroDirect.phone_local }}
             </inertia-link>
         </td>
         <td class="border-t">
@@ -76,7 +76,7 @@
                 class="px-6 py-4 flex items-center"
                 :href="route('directorio.edit', registroDirect.id)"
             >
-                {{ registroDirect.id_tema }}
+                {{ registroDirect.tema_general }}
             </inertia-link>
         </td>
         <td class="border-t">

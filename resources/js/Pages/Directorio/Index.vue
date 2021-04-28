@@ -25,13 +25,13 @@
                             />
                         </div>
 
-                        <!--<button
+                        <button
                             class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-3 mt-5 px-4 rounded"
                             type="button"
                             @click="reset"
                         >
                             Restablecer filtros
-                        </button>-->
+                        </button>
 
                         <inertia-link
                             class="bg-SSAred-300 hover:bg-gray-100 hover:text-SSAred-300 border hover:border-SSAred-300 text-white font-bold py-3 mt-5 px-4 rounded"

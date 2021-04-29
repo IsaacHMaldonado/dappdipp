@@ -18,7 +18,7 @@
                                 Buscar
                             </label>
                             <input
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                class="appearance-none block w-full font-semibold bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 v-model="form.search"
                                 type="text"
                                 placeholder="Realizar busqueda"
@@ -26,7 +26,7 @@
                         </div>
 
                         <button
-                            class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-3 mt-5 px-4 rounded"
+                            class="bg-SSAgold-400 hover:bg-gray-100 hover:text-SSAgold-400 border hover:border-SSAgold-400 text-white font-semibold py-3 mt-5 px-4 rounded"
                             type="button"
                             @click="reset"
                         >
@@ -34,26 +34,22 @@
                         </button>
 
                         <inertia-link
-                            class="bg-SSAred-300 hover:bg-gray-100 hover:text-SSAred-300 border hover:border-SSAred-300 text-white font-bold py-3 mt-5 px-4 rounded"
+                            class="bg-SSAred-300 hover:bg-gray-100 hover:text-SSAred-300 border hover:border-SSAred-300 text-white font-semibold py-3 mt-5 px-4 rounded"
                             :href="route('directorio.create')"
                         >
                             <span>Generar </span>
-                            <span class="hidden md:inline">Alta | Enlace</span>
+                            <span class="hidden md:inline">Nuevo enlace</span>
                         </inertia-link>
                     </div>
             <div class="bg-white rounded shadow overflow-x-auto">
-                        <table class="w-full whitespace-no-wrap">
+                        <table class="min-w-full divide-y divide-gray-200">
                             <tr class="text-left font-bold">
-                                <th class="px-6 pt-6 pb-4">Ramo</th>
-                                <th class="px-6 pt-6 pb-4">Unidad</th>
-                                <th class="px-6 pt-6 pb-4">Nombre</th>
-                                <th class="px-6 pt-6 pb-4">Cargo</th>
-                                <th class="px-6 pt-6 pb-4">Domicilio</th>
-                                <th class="px-6 pt-6 pb-4">Teléfono</th>
-                                <th class="px-6 pt-6 pb-4">Celular</th>
-                                <th class="px-6 pt-6 pb-4">Correo</th>
-                                <th class="px-6 pt-6 pb-4">Tema General</th>
-                                <th class="px-6 pt-6 pb-4">Tema Especifico</th>
+                                <th class="px-6 py-3 text-left text-xs  text-gray-500 uppercase tracking-wider">Ramo</th>
+                                <th class="px-6 py-3 text-left text-xs  text-gray-500 uppercase tracking-wider">Unidad</th>
+                                <th class="px-6 py-3 text-left text-xs  text-gray-500 uppercase tracking-wider">Nombre</th>
+                                <th class="px-6 py-3 text-left text-xs  text-gray-500 uppercase tracking-wider">Datos de Contacto</th>
+                                <th class="px-6 py-3 text-left text-xs  text-gray-500 uppercase tracking-wider">Tema General</th>
+                                <th class="px-6 py-3 text-left text-xs  text-gray-500 uppercase tracking-wider">Tema Especifico</th>
                             </tr>
                             <DirectRegister
                                 v-for="registroDirect in directorio.data"

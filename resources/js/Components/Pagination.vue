@@ -10,8 +10,8 @@
             <inertia-link
                 v-else
                 :key="link"
-                class="mr-1 mb-1 px-4 py-3 text-sm border rounded focus:border-indigo-500 focus:text-indigo-500"
-                :class="{ 'bg-indigo-600 text-white': link.active }"
+                class="mr-1 mb-1 px-4 py-3 text-sm border rounded focus:border-SSAgreen-500 focus:text-SSAgreen-500"
+                :class="{ 'bg-SSAgreen-300 text-white': link.active }"
                 :href="link.url"
             >
 

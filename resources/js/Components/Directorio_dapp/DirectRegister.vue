@@ -1,18 +1,38 @@
 <template>
-    <tr class="hover:bg-gray-100 focus-within:bg-gray-100">
-        <td class="border-t">
+    <tr class="bg-white divide-y divide-gray-200 hover:bg-gray-100 focus-within:bg-gray-100">
+        <td class="border-t whitespace-pre-wrap">
+
             <inertia-link
                 class="px-6 py-4 flex items-center focus:text-indigo-500"
                 :href="route('directorio.edit', registroDirect.id)"
             >
-                {{ registroDirect.ramo }} - {{ registroDirect.ramoDes }}
-                <svg
-                    v-if="registroDirect.deleted_at"
-                    class="flex-shrink-0 w-3 h-3 fill-gray-400 ml-2" xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                >
-                    <path d="M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z" />
-                </svg>
+                <div class="flex items-center tracking-wide">
+                    <div class="ml-4">
+                        <div class="text-sm font-medium text-gray-900">
+                            {{ registroDirect.ramo }}
+                        </div>
+                        <div class="text-sm text-gray-500">
+                            {{ registroDirect.ramoDes }}
+                        </div>
+                    </div>
+                </div>
+            </inertia-link>
+        </td>
+        <td class="border-t whitespace-pre-wrap">
+            <inertia-link
+                class="px-6 py-4 flex items-center"
+                :href="route('directorio.edit', registroDirect.id)"
+            >
+                <div class="flex items-center tracking-wide">
+                    <div class="ml-4">
+                        <div class="text-sm font-medium text-gray-900">
+                            {{ registroDirect.cveUnidad }}
+                        </div>
+                        <div class="text-sm text-gray-500">
+                            {{ registroDirect.unidadDes }}
+                        </div>
+                    </div>
+                </div>
             </inertia-link>
         </td>
         <td class="border-t">
@@ -20,7 +40,17 @@
                 class="px-6 py-4 flex items-center"
                 :href="route('directorio.edit', registroDirect.id)"
             >
-                {{ registroDirect.unidad }}
+
+                <div class="flex items-center tracking-wide">
+                    <div class="ml-4">
+                        <div class="text-sm font-medium text-gray-900">
+                            {{ registroDirect.titulo_grado }} {{registroDirect.nombre}}
+                        </div>
+                        <div class="text-sm text-gray-500">
+                            {{ registroDirect.cargo }}
+                        </div>
+                    </div>
+                </div>
             </inertia-link>
         </td>
         <td class="border-t">
@@ -28,7 +58,19 @@
                 class="px-6 py-4 flex items-center"
                 :href="route('directorio.edit', registroDirect.id)"
             >
-                {{ registroDirect.titulo_grado }} - {{registroDirect.nombre}}
+                <div class="flex items-center tracking-wide">
+                    <div class="ml-4">
+                        <div class="text-sm font-medium text-gray-900 py-2">
+                            <span class="font-bold">email:</span> <br> {{ registroDirect.email }}
+                        </div>
+                        <div class="text-sm font-medium text-gray-700 py-2">
+                            <span class="font-bold">Teléfono Local:</span> <br> {{ registroDirect.phone_local }}
+                        </div>
+                        <div class="text-sm text-gray-500 py-2">
+                            <span class="font-bold">Celular:</span> <br> {{ registroDirect.movile_phone }}
+                        </div>
+                    </div>
+                </div>
             </inertia-link>
         </td>
         <td class="border-t">
@@ -36,47 +78,7 @@
                 class="px-6 py-4 flex items-center"
                 :href="route('directorio.edit', registroDirect.id)"
             >
-                {{ registroDirect.cargo }}
-            </inertia-link>
-        </td>
-        <td class="border-t">
-            <inertia-link
-                class="px-6 py-4 flex items-center"
-                :href="route('directorio.edit', registroDirect.id)"
-            >
-                {{ registroDirect.direccion }}
-            </inertia-link>
-        </td>
-        <td class="border-t">
-            <inertia-link
-                class="px-6 py-4 flex items-center"
-                :href="route('directorio.edit', registroDirect.id)"
-            >
-                {{ registroDirect.phone_local }}
-            </inertia-link>
-        </td>
-        <td class="border-t">
-            <inertia-link
-                class="px-6 py-4 flex items-center"
-                :href="route('directorio.edit', registroDirect.id)"
-            >
-                {{ registroDirect.movile_phone }}
-            </inertia-link>
-        </td>
-        <td class="border-t">
-            <inertia-link
-                class="px-6 py-4 flex items-center"
-                :href="route('directorio.edit', registroDirect.id)"
-            >
-                {{ registroDirect.email }}
-            </inertia-link>
-        </td>
-        <td class="border-t">
-            <inertia-link
-                class="px-6 py-4 flex items-center"
-                :href="route('directorio.edit', registroDirect.id)"
-            >
-                {{ registroDirect.tema_general }}
+                {{ registroDirect.temaDes }}
             </inertia-link>
         </td>
         <td class="border-t">

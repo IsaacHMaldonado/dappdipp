@@ -149,7 +149,7 @@
                                 type="button"
                                 @click="showModal = true"
                             >
-                                Eliminar proyecto
+                                Eliminar Enlace
                             </button>
 
                         </div>

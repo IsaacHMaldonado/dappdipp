@@ -18,7 +18,9 @@ class DirectorioController extends Controller
         return Inertia::render("Directorio/Index", [
             "filters" => session()->only(["search"]),
             "directorio" => Directorio::with("user")
-                ->orderByDesc("id")
+                ->leftJoin('cat_ramos', 'directorios.ramo_general', '=', 'cat_ramos.id')
+                    ->select('directorios.id','directorios.ramo_general','cat_ramos.ramo_general AS ramo', 'cat_ramos.descripcion AS ramoDes','directorios.unidad','directorios.titulo_grado','directorios.nombre','directorios.cargo','directorios.email','directorios.direccion','directorios.tema_general','directorios.tema_especifico','directorios.phone_local','directorios.movile_phone')
+                ->orderByDesc("directorios.id")
                 ->filter(request()->only("search"))
                 ->paginate(5),
         ]);
@@ -87,12 +89,26 @@ class DirectorioController extends Controller
     public function update(Directorio $directorio){
         $directorio->update(
             $this->validate(request(),[
-                'name'=>'required|unique:projects,name,' . $directorio->id,
-                'excerpt'=>'required|min:10|max:200',
-                'content'=>'required|min:10|max:1000',
+                'id'=>'required|unique:directorios,id,' . $directorio->id.'',
+                'ramo_general'=>'required',
+                'unidad'=>'required',
+                'titulo_grado'=>'required',
+                'nombre'=>'required|unique:directorios,nombre,' . $directorio->id.'',
+                'cargo'=>'required|min:10',
+                'email'=>'required|unique:directorios,email,' . $directorio->id.'',
+                'direccion'=>'required|min:10|max:200',
+                'tema_general'=>'required',
+                'tema_especifico'=>'required',
+                'phone_local'=>'required',
+                'movile_phone'=>'required',
             ])
         );
-        return redirect()->route('projects.index')->with('success', '¡Proyecto Actualizado!');
+        return redirect()->route('directorio.index')->with('success', '¡Enlace Actualizado!');
+    }
+
+    public function destroy(Directorio $enlace){
+        $enlace->delete();
+        return redirect()->route('directorio.index')->with('success', '¡Enlace Eliminado!');
     }
 
 }

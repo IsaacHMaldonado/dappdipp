@@ -5,7 +5,7 @@
                 class="px-6 py-4 flex items-center focus:text-indigo-500"
                 :href="route('directorio.edit', registroDirect.id)"
             >
-                {{ registroDirect.ramo_general }}
+                {{ registroDirect.ramo }} - {{ registroDirect.ramoDes }}
                 <svg
                     v-if="registroDirect.deleted_at"
                     class="flex-shrink-0 w-3 h-3 fill-gray-400 ml-2" xmlns="http://www.w3.org/2000/svg"

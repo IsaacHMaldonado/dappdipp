@@ -132,29 +132,52 @@
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                            <loading-button
-                                :loading="processing"
-                                class="bg-SSAgreen-400 hover:bg-white text-white hover:text-SSAgreen-400 hover:border-SSAgreen-400 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                type="submit"
-                                @submit="submit"
-                            >
-                                Actualizar Enlace
+                                <loading-button
+                                    :loading="processing"
+                                    class="bg-SSAgreen-400 hover:bg-white text-white hover:text-SSAgreen-400 hover:border-SSAgreen-400 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                    type="submit"
+                                    @submit="submit"
+                                >
+                                    Actualizar Enlace
 
-                            </loading-button>
+                                </loading-button>
+
+                        </div>
+                        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                            <button
+                                class="bg-SSAred-400 hover:bg-white text-white hover:text-SSAred-400 hover:uderline hover:border-SSAred-400 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                type="button"
+                                @click="showModal = true"
+                            >
+                                Eliminar proyecto
+                            </button>
 
                         </div>
                     </div>
-
-
-
-
-
-
                     <div class="px-8 py-4 border-t border-gray-200 flex justify-center items-center">
                         <slot name="buttons" />
                     </div>
                 </form>
 
+                <jet-confirmation-modal :show="showModal" @close="showModal = false">
+                    <template #title>
+                        Eliminar Enlace
+                    </template>
+
+                    <template #content>
+                        ¿Estás seguro que quieres eliminar el enlace?
+                    </template>
+
+                    <template #footer>
+                        <jet-secondary-button @click.native="showModal = false">
+                            Cancelar
+                        </jet-secondary-button>
+
+                        <jet-danger-button @click.native="destroy" class="ml-2" :class="{ 'opacity-25': processing }" :disabled="processing">
+                            Eliminar enlace
+                        </jet-danger-button>
+                    </template>
+                </jet-confirmation-modal>
 
 
 
@@ -167,10 +190,13 @@
 import BackendLayout from '@/Layouts/BackendLayout';
 import LoadingButton from "@/Components/Backend/LoadingButton";
 import Multiselect from '@suadelabs/vue3-multiselect';
+import JetConfirmationModal from "@/Jetstream/ConfirmationModal";
+import JetSecondaryButton from "@/Jetstream/SecondaryButton";
+import JetDangerButton from "@/Jetstream/DangerButton"
 
 export default {
     name: 'createEnlace',
-    components:{BackendLayout,LoadingButton,Multiselect},
+    components:{BackendLayout,LoadingButton,Multiselect,JetConfirmationModal,JetSecondaryButton,JetDangerButton},
     props: {
         errors: Object,
         directorio: Object,
@@ -192,12 +218,12 @@ export default {
         return {
             processing: false,
             viewSelectUnidad: true,
+            showModal: false,
 
 
             form: {
                 selectedRamo: this.selectRamo[this.directorio.ramo_general-1],
                 ramo_general:this.selectRamo[this.directorio.ramo_general-1].id,
-
                 selectedUnidad:this.selectUnidad[this.directorio.unidad-1],
                 unidad: this.selectUnidad[this.directorio.unidad-1].id,
                 selectedTemaGeneral: this.selectUnidad[this.directorio.tema_general-1],
@@ -210,7 +236,7 @@ export default {
                 phone_local:this.directorio.phone_local,
                 email:this.directorio.email,
                 tema_especifico:this.directorio.tema_especifico,
-                idUpdate:this.directorio.id,
+                id:this.directorio.id,
 
 
 
@@ -220,7 +246,7 @@ export default {
     methods: {
         submit() {
             this.processing = true
-            this.$inertia.put(this.route('directorio.update', this.project.id), this.form)
+            this.$inertia.put(this.route('directorio.update', this.form.id), this.form)
                 .then(() => this.processing = false)
         },
         AsignarUnidad($event){
@@ -256,7 +282,7 @@ export default {
         },
         destroy() {
             this.processing = true
-            this.$inertia.delete(this.route('directorio.destroy', this.project.id))
+            this.$inertia.delete(this.route('directorio.destroy', this.directorio.id))
                 .then(() => this.processing = false)
         }
 

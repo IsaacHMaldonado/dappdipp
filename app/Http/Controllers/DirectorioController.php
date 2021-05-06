@@ -12,20 +12,7 @@ use Inertia\Inertia;
 class DirectorioController extends Controller
 {
     public function index() {
-        if (session()->has("search")) {
-
-            return Inertia::render("Directorio/Index", [
-                "filters" => session()->only(["search"]),
-                "directorio" => Directorio::with("user")
-                    ->leftJoin('cat_ramos', 'directorios.ramo_general', '=', 'cat_ramos.id')
-                    ->leftJoin('cat_unidades','directorios.unidad','=','cat_unidades.id')
-                    ->leftJoin('cat_temas','directorios.tema_general','=','cat_temas.id')
-                    ->select('directorios.id','cat_ramos.ramo_general AS ramo', 'cat_ramos.descripcion AS ramoDes', 'cat_unidades.unidad as cveUnidad', 'cat_unidades.descripcion AS unidadDes','directorios.titulo_grado','directorios.nombre','directorios.cargo','directorios.email','directorios.direccion' ,'cat_temas.desc_tema AS temaDes','directorios.tema_especifico','directorios.phone_local','directorios.movile_phone')
-                    ->orderByDesc("directorios.id")
-                    ->paginate(5),
-            ]);
-
-        }elseif (!session()->has("search")){
+        if (!session()->has("search")) {
 
             session()->put("search", null);
 

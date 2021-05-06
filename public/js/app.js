@@ -18653,7 +18653,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       form: {
-        search: null
+        search: this.filters.search
       }
     };
   },

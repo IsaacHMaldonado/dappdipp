@@ -1,5 +1,6 @@
 require('./bootstrap');
 
+
 // Import modules...
 import { createApp, h, Teleport } from 'vue';
 import { App as InertiaApp, plugin as InertiaPlugin } from '@inertiajs/inertia-vue3';

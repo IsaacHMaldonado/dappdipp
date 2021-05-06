@@ -95,7 +95,7 @@
                             <label class="block uppercase tracking-wide text-SSAwine-400 text-xs font-bold mb-2" for="email">
                                 E-mail
                             </label>
-                            <input class="appearance-none block w-full bg-white text-SSAgreen-400 border border-SSAgold-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-SSAgreen-400" v-model="form.email" id="email" type="email" placeholder="Ingresa Email">
+                            <input class="appearance-none block w-full bg-white text-SSAgreen-400 border border-SSAgold-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-SSAgreen-400" v-model="form.email" id="email" type="text" placeholder="Ingresa Email">
                             <div v-if="errors" class="text-SSAred-300 font-semibold text-xs">{{ errors.email }}</div>
                         </div>
                     </div>
@@ -223,11 +223,11 @@ export default {
 
             form: {
                 selectedRamo: this.selectRamo[this.directorio.ramo_general-1],
-                ramo_general:this.selectRamo[this.directorio.ramo_general-1].id,
+                ramo_general:this.directorio.ramo_general,
                 selectedUnidad:this.selectUnidad[this.directorio.unidad-1],
-                unidad: this.selectUnidad[this.directorio.unidad-1].id,
-                selectedTemaGeneral: this.selectUnidad[this.directorio.tema_general-1],
-                tema_general: this.selectUnidad[this.directorio.tema_general-1].id,
+                unidad: this.directorio.unidad,
+                selectedTemaGeneral: this.selectTemaGeneral[this.directorio.tema_general-1],
+                tema_general: this.directorio.tema_general,
                 titulo_grado:this.directorio.titulo_grado,
                 nombre:this.directorio.nombre,
                 cargo:this.directorio.cargo,

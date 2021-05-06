@@ -42,7 +42,7 @@
                         </inertia-link>
                     </div>
             <div class="bg-white rounded shadow overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200">
+                        <table class="min-w-full divide-y divide-gray-200" id="tabelContactos">
                             <tr class="text-left font-bold">
                                 <th class="px-6 py-3 text-left text-xs  text-gray-500 uppercase tracking-wider">Ramo</th>
                                 <th class="px-6 py-3 text-left text-xs  text-gray-500 uppercase tracking-wider">Unidad</th>
@@ -84,7 +84,7 @@
         data() {
             return {
                 form: {
-                    search: this.filters.search,
+                    search: null,
                 }
             }
         },

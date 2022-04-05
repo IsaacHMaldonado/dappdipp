@@ -29,9 +29,11 @@ class Directorio extends Model
     }
 
     public function scopeFilter(Builder $query, array $filters) {
+        
         if (!request('page')) {
             session()->put('search', $filters['search'] ?? null);
         }
+
         $query->when(session('search'), function ($query, $search){
             $query->where('cat_ramos.ramo_general','LIKE','%'.$search.'%')
                     ->orWhere('cat_ramos.descripcion','LIKE','%'.$search.'%')
